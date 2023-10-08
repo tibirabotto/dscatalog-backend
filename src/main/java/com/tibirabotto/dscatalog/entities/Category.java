@@ -3,6 +3,8 @@ package com.tibirabotto.dscatalog.entities;
 import java.io.Serializable;
 import java.util.Objects;
 
+import com.tibirabotto.dscatalog.dto.CategoryDTO;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -23,6 +25,10 @@ public class Category implements Serializable {
 	
 	public Category() {
 		
+	}
+	
+	public Category(CategoryDTO dto) {
+		this.name = dto.getName();
 	}
 
 	public Category(Long id, String name) {
