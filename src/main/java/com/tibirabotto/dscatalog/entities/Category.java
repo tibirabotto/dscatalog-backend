@@ -1,7 +1,7 @@
 package com.tibirabotto.dscatalog.entities;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.time.Instant;
 import java.util.Objects;
 
 import com.tibirabotto.dscatalog.dto.CategoryDTO;
@@ -22,16 +22,12 @@ public class Category implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
-	@Column(name = "created_at", nullable = false, updatable = false)
-	private Date createdAt;
 
-	public Date getCreatedAt() {
-		return createdAt;
-	}
+	@Column(columnDefinition = "TIMESTAMP WITH TIME ZONE")
+	private Instant createdAt;
 
-	public void setCreatedAt(Date createdAt) {
-		this.createdAt = createdAt;
-	}
+	@Column(columnDefinition = "TIMESTAMP WITH TIME ZONE")
+	private Instant updatedAt;
 
 	public Category() {
 
@@ -60,6 +56,22 @@ public class Category implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public Instant getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(Instant createdAt) {
+		this.createdAt = createdAt;
+	}
+
+	public Instant getUpdatedAt() {
+		return updatedAt;
+	}
+
+	public void setUpdatedAt(Instant updatedAt) {
+		this.updatedAt = updatedAt;
 	}
 
 	@Override
