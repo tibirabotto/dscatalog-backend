@@ -1,32 +1,42 @@
 package com.tibirabotto.dscatalog.entities;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.util.Objects;
 
 import com.tibirabotto.dscatalog.dto.CategoryDTO;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
-
-
 @Entity
 @Table(name = "tb_category")
 public class Category implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
-	
-	public Category() {
-		
+	@Column(name = "created_at", nullable = false, updatable = false)
+	private Date createdAt;
+
+	public Date getCreatedAt() {
+		return createdAt;
 	}
-	
+
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
+	}
+
+	public Category() {
+
+	}
+
 	public Category(CategoryDTO dto) {
 		this.name = dto.getName();
 	}
@@ -68,7 +78,5 @@ public class Category implements Serializable {
 		Category other = (Category) obj;
 		return Objects.equals(id, other.id);
 	}
-	
-	
-	
+
 }
